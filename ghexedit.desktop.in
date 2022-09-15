@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Example
+Comment=
+Exec=ghexedit
+Icon=com.github.treecase.ghexedit
+Type=Application
+StartupNotify=true

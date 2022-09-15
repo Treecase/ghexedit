@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/com/github/treecase/ghexedit/" id="com.github.treecase.ghexedit">
+    <key name="font" type="s">
+      <default>'Monospace 12'</default>
+      <summary>Font</summary>
+      <description>The font to be used for content.</description>
+    </key>
+    <key name="grouping" type="u">
+      <range min="1"/>
+      <default>8</default>
+      <summary>Grouping</summary>
+      <description>Byte grouping.</description>
+    </key>
+    <key name="bytes-per-line" type="u">
+      <range min="1"/>
+      <default>16</default>
+      <summary>Bytes per line</summary>
+      <description>Number of bytes per line.</description>
+    </key>
+  </schema>
+</schemalist>

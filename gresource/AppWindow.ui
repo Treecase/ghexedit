@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GHexEditAppWindow" parent="GtkApplicationWindow">
+    <property name="title" translatable="yes">GHexEdit</property>
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <child>
+      <object class="GtkBox" id="content_box">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkNotebook" id="notebook">
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="menubar">
+    <!-- 'File' Menu -->
+    <submenu>
+      <attribute name="label" translatable="yes">_File</attribute>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">_Open</attribute>
+          <attribute name="action">app.open</attribute>
+        </item>
+        <item>
+          <attribute name="label" translatable="yes">_Quit</attribute>
+          <attribute name="action">app.quit</attribute>
+        </item>
+      </section>
+    </submenu>
+    <!-- 'Edit' Menu -->
+    <submenu>
+      <attribute name="label" translatable="yes">_Edit</attribute>
+      <section>
+        <item>
+          <attribute name="label" translatable="yes">_Preferences</attribute>
+          <attribute name="action">app.preferences</attribute>
+        </item>
+      </section>
+    </submenu>
+  </menu>
+</interface>

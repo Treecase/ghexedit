@@ -25,8 +25,13 @@ pkg_check_modules(GTK4 REQUIRED gtk4)
 
 
 configure_file(
-    "${PROJECT_SOURCE_DIR}/ghexedit.desktop.in"
-    "${PROJECT_BINARY_DIR}/${APPLICATION_ID}.desktop"
+    "ghexedit.desktop.in"
+    "${APPLICATION_ID}.desktop"
+)
+
+configure_file(
+    "ghexedit.gschema.xml.in"
+    "ghexedit.gschema.xml"
 )
 
 # Generate gschemas.compiled.
@@ -36,25 +41,21 @@ add_custom_target(
         glib-compile-schemas
         --strict
         --targetdir=.
-        --schema-file="${PROJECT_SOURCE_DIR}/ghexedit.gschema.xml"
+        --schema-file=ghexedit.gschema.xml
 )
-
-# Generate GResource data
-add_subdirectory(gresource)
 
 # Main executable target
 add_executable(ghexedit)
-target_sources(ghexedit PRIVATE
-    "${PROJECT_BINARY_DIR}/gresource/resources.c"
-)
 add_dependencies(ghexedit gschemas.compiled)
-add_dependencies(ghexedit resources.c)
 target_compile_features(ghexedit PRIVATE c_std_11)
 set_target_properties(ghexedit PROPERTIES C_EXTENSIONS OFF)
 target_include_directories(ghexedit PRIVATE "${PROJECT_BINARY_DIR}/include")
 target_include_directories(ghexedit PRIVATE "${GTK4_INCLUDE_DIRS}")
 target_link_directories(ghexedit PRIVATE "${GTK4_LIBRARY_DIRS}")
 target_link_libraries(ghexedit PRIVATE "${GTK4_LIBRARIES}")
+
+# Generate GResource data
+add_subdirectory(gresource)
 
 # Generate include headers, add source files
 add_subdirectory(src)
@@ -69,7 +70,7 @@ install(FILES "${PROJECT_BINARY_DIR}/${APPLICATION_ID}.desktop"
 install(DIRECTORY icons/
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/icons"
 )
-install(FILES "${PROJECT_SOURCE_DIR}/ghexedit.gschema.xml"
+install(FILES "${PROJECT_BINARY_DIR}/ghexedit.gschema.xml"
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/glib-2.0/schemas"
     RENAME "${APPLICATION_ID}.gschema.xml"
 )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/com/github/treecase/ghexedit/" id="com.github.treecase.ghexedit">
+  <schema path="@GRESOURCE_PREFIX@" id="@APPLICATION_ID@">
     <key name="font" type="s">
       <default>'Monospace 12'</default>
       <summary>Font</summary>

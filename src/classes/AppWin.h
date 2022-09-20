@@ -29,5 +29,6 @@ G_DECLARE_FINAL_TYPE(GHexEditAppWindow, ghexedit_app_window, GHEXEDIT, APP_WINDO
 
 GHexEditAppWindow *ghexedit_app_window_new(GHexEditApp *app);
 void ghexedit_app_window_open(GHexEditAppWindow *win, GFile *file);
+void ghexedit_app_window_close_current(GHexEditAppWindow *win);
 
 #endif

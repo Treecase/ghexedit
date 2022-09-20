@@ -10,6 +10,10 @@
           <attribute name="action">app.open</attribute>
         </item>
         <item>
+          <attribute name="label" translatable="yes">_Close</attribute>
+          <attribute name="action">app.close</attribute>
+        </item>
+        <item>
           <attribute name="label" translatable="yes">_Quit</attribute>
           <attribute name="action">app.quit</attribute>
         </item>

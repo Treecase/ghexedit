@@ -47,6 +47,7 @@ void file_picked(GtkNativeDialog *native, int response, gpointer app)
     g_object_unref(native);
 }
 
+
 /* ===[ Actions ]=== */
 /** Open a file. */
 void open_activated(GSimpleAction *action, GVariant *parameter, gpointer app)
@@ -55,6 +56,13 @@ void open_activated(GSimpleAction *action, GVariant *parameter, gpointer app)
     GtkFileChooserNative *chooser = gtk_file_chooser_native_new("Open", win, GTK_FILE_CHOOSER_ACTION_OPEN, "Open", "Cancel");
     g_signal_connect(chooser, "response", G_CALLBACK(file_picked), app);
     gtk_native_dialog_show(GTK_NATIVE_DIALOG(chooser));
+}
+
+/** Close a file. */
+void close_activated(GSimpleAction *action, GVariant *parameter, gpointer app)
+{
+    GtkWindow *win = gtk_application_get_active_window(GTK_APPLICATION(app));
+    ghexedit_app_window_close_current(GHEXEDIT_APP_WINDOW(win));
 }
 
 /** Quit the App. */
@@ -75,6 +83,7 @@ void preferences_activated(GSimpleAction *action, GVariant *parameter, gpointer 
 static GActionEntry const app_entries[] = {
     // File menu
     {"open", open_activated, NULL, NULL, NULL},
+    {"close", close_activated, NULL, NULL, NULL},
     {"quit", quit_activated, NULL, NULL, NULL},
     // Edit menu
     {"preferences", preferences_activated, NULL, NULL, NULL},
@@ -87,11 +96,15 @@ void ghexedit_app_startup(GApplication *app)
 {
     GtkBuilder *builder;
     GMenuModel *app_menu;
+    char const *open_accels[2] = {"<Ctrl>O", NULL};
+    char const *close_accels[2] = {"<Ctrl>W", NULL};
     char const *quit_accels[2] = {"<Ctrl>Q", NULL};
 
     G_APPLICATION_CLASS(ghexedit_app_parent_class)->startup(app);
 
     g_action_map_add_action_entries(G_ACTION_MAP(app), app_entries, G_N_ELEMENTS(app_entries), app);
+    gtk_application_set_accels_for_action(GTK_APPLICATION(app), "app.open", open_accels);
+    gtk_application_set_accels_for_action(GTK_APPLICATION(app), "app.close", close_accels);
     gtk_application_set_accels_for_action(GTK_APPLICATION(app), "app.quit", quit_accels);
 }
 

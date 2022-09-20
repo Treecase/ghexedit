@@ -52,6 +52,7 @@ void apply_font(GObject *self, gpointer user_data)
 }
 
 
+/* ===[ GHexEditAppWindow ]=== */
 /** Called by App to send a file to open. */
 void ghexedit_app_window_open(GHexEditAppWindow *win, GFile *file)
 {
@@ -65,6 +66,7 @@ void ghexedit_app_window_open(GHexEditAppWindow *win, GFile *file)
     GtkWidget *view = ghexedit_hex_view_new();
     gtk_text_view_set_editable(GTK_TEXT_VIEW(view), FALSE);
     gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(view), TRUE);
+    gtk_text_view_set_monospace(GTK_TEXT_VIEW(view), TRUE);
     // Add view as child of scrolled
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrolled), view);
     // Add scrolled as a notebook page
@@ -83,6 +85,13 @@ void ghexedit_app_window_open(GHexEditAppWindow *win, GFile *file)
         ghexedit_hex_view_set_underlying(GHEXEDIT_HEX_VIEW(view), content);
     }
     g_free(basename);
+}
+
+/** Close the current NotebookPage. */
+void ghexedit_app_window_close_current(GHexEditAppWindow *win)
+{
+    GtkNotebook *notebook = GTK_NOTEBOOK(win->notebook);
+    gtk_notebook_remove_page(notebook, gtk_notebook_get_current_page(notebook));
 }
 
 

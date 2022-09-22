@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "appid.h"
 #include "version.h"
 #include "classes/App.h"
 
@@ -28,6 +29,6 @@ int main(int argc, char *argv[])
      * we have to help it find its schema. This
      * is *not* necessary in properly installed
      * application. */
-    g_setenv("GSETTINGS_SCHEMA_DIR", "/home/trevor/Documents/source/ghexedit/build", FALSE);
+    g_setenv("GSETTINGS_SCHEMA_DIR", GHX_BINARY_DIR, FALSE);
     return g_application_run(G_APPLICATION(ghexedit_app_new()), argc, argv);
 }
